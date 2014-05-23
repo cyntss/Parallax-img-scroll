@@ -1,0 +1,45 @@
+/* you dont need this CSS in your project */
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,200,700);
+
+body {
+	margin: 0;
+	padding: 0;
+	font: 14px arial;
+	color: #444
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200
+} 
+h1 {
+	font-size: 5em
+}
+h2 {
+	font-size: 3.5em
+}
+h3 {
+	font-size: 2.2em
+}
+
+nav {
+	background: #333;
+	text-align: center;
+	padding: 1em 0;
+	color: #fff
+}
+article {
+	padding: 3em 0
+}
+article:nth-child(1) {
+	text-align: center;
+}
+article:nth-child(2) {
+	background: url('../img/wallpaper-766095.jpg') fixed no-repeat;
+	-moz-background-size:100%;
+  -webkit-background-size:100% ;
+  background-size:100%;
+	width: 100%;
+	text-align: center;
+	color: #fff !important
+}
+
