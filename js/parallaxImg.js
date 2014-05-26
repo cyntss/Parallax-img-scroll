@@ -50,7 +50,6 @@ function initialSetup() {
 					"scrollSpeed": scrollSpeed,
 					"pagePosition": ranNumPosition
 				})
-				console.log(sizeOfContainers +" x " +scrollSpeed)
 			}
 		}
 	})
