@@ -40,13 +40,31 @@ section:nth-of-type(1) article:nth-of-type(1) {
 	text-align: center;
 	position: relative;
 	z-index: 10;
-	padding-top: 6em
+	padding-top: 6em;
+	min-height: 100%
 }
-section:nth-of-type(1) article:nth-of-type(1) h1 {
-	color: #fff
+a.btn-download-init {
+	border: 1px solid #fff;
+	color: #fff;
+	display: inline-block;
+	padding: 1em 2em;
+	border-radius: 6px;
+	text-decoration: none;
+	font-family: 'Raleway', sans-serif;
+  font-weight: 100
+}
+a.btn-download-init:hover {
+  border: 1px solid #1FE0D4;
+  color: #1FE0D4;
+  background: rgba(31,224,212,0.1);
+}
+section:nth-of-type(1) article:nth-of-type(1) h1,
+section:nth-of-type(1) article:nth-of-type(1) h3 {
+	color: #fff;
+	margin: 1em 0 0.5em 0
 }
 section:nth-of-type(2) article:nth-of-type(1) {
-	background: url('../img/bg01.jpg') fixed center center #333;
+	background: url('../img/wallpaper-1132086.jpg') fixed center center #333;
 	width: 100%;
 	height: auto;
 	text-align: center;
@@ -93,15 +111,17 @@ section:nth-of-type(2) article:nth-of-type(1) {
 #parallax-img-1 {
 	width: 40px;
 	height: auto;
+  opacity:0.6;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-2 {
-	width: 60px;
+	width: 160px;
 	height: auto;
 	transform:rotate(-30deg);
   -ms-transform:rotate(-30deg); /* IE 9 */
   -webkit-transform:rotate(-30deg); /* Opera, Chrome, and Safari */
-  opacity:0.6;
-  filter:alpha(opacity=60); /* For IE8 and earlier */
+  opacity:0.2;
+  filter:alpha(opacity=20); /* For IE8 and earlier */
 }
 #parallax-img-3 {
 	width: 50px;
@@ -109,15 +129,17 @@ section:nth-of-type(2) article:nth-of-type(1) {
 	transform:rotate(-12deg);
   -ms-transform:rotate(-12deg); /* IE 9 */
   -webkit-transform:rotate(-12deg); /* Opera, Chrome, and Safari */
+  opacity:0.6;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-4 {
-	width: 40px;
+	width: 140px;
 	height: auto;
 	transform:rotate(14deg);
   -ms-transform:rotate(14deg); /* IE 9 */
   -webkit-transform:rotate(14deg); /* Opera, Chrome, and Safari */
-  opacity:0.8;
-  filter:alpha(opacity=80); /* For IE8 and earlier */
+  opacity:0.2;
+  filter:alpha(opacity=20); /* For IE8 and earlier */
 }
 #parallax-img-5 {
 	width: 40px;
@@ -125,15 +147,17 @@ section:nth-of-type(2) article:nth-of-type(1) {
 	transform:rotate(14deg);
   -ms-transform:rotate(14deg); /* IE 9 */
   -webkit-transform:rotate(14deg); /* Opera, Chrome, and Safari */
+  opacity:0.3;
+  filter:alpha(opacity=30); /* For IE8 and earlier */
 }
 #parallax-img-6 {
-	width: 60px;
+	width: 80px;
 	height: auto;
 	transform:rotate(7deg);
   -ms-transform:rotate(7deg); /* IE 9 */
   -webkit-transform:rotate(7deg); /* Opera, Chrome, and Safari */
-  opacity:0.4;
-  filter:alpha(opacity=40); /* For IE8 and earlier */
+  opacity:0.3;
+  filter:alpha(opacity=30); /* For IE8 and earlier */
 }
 #parallax-img-7 {
 	width: 50px;
@@ -141,8 +165,12 @@ section:nth-of-type(2) article:nth-of-type(1) {
 	transform:rotate(-12deg);
   -ms-transform:rotate(-12deg); /* IE 9 */
   -webkit-transform:rotate(-12deg); /* Opera, Chrome, and Safari */
+  opacity:0.6;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-8 {
-	width: 40px;
+	width: 150px;
 	height: auto;
+	opacity:0.6;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
 }
