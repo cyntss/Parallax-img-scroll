@@ -1,5 +1,5 @@
 /* you dont need this CSS in your project */
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,200,700);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,100,200,700);
 
 body {
 	margin: 0;
@@ -10,7 +10,7 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', sans-serif;
-  font-weight: 200
+  font-weight: 100
 } 
 h1 {
 	font-size: 5em
@@ -23,24 +23,68 @@ h3 {
 }
 
 nav {
-	background: #333;
+	background: rgba(0,0,0,1);
 	text-align: center;
 	padding: 1em 0;
 	color: #fff
 }
+section:nth-of-type(1) {
+	position: relative;
+	height: 720px;
+	text-align: center;
+}
 article {
 	padding: 3em 0
 }
-article:nth-child(1) {
+section:nth-of-type(1) article:nth-of-type(1) {
 	text-align: center;
+	position: relative;
+	z-index: 10;
+	padding-top: 6em
 }
-article:nth-child(2) {
+section:nth-of-type(1) article:nth-of-type(1) h1 {
+	color: #fff
+}
+section:nth-of-type(2) article:nth-of-type(1) {
 	background: url('../img/bg01.jpg') fixed center center #333;
 	width: 100%;
 	height: auto;
 	text-align: center;
 	color: #fff !important;
 	height: 600px;
+}
+.video-container{
+	position: absolute;
+	z-index: 0;
+	min-width: 100%;
+	min-height: 100%;
+	left: 0px;
+	top: 0px;
+	overflow: hidden;
+	opacity: 1;
+}
+.video-bg-overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/pattern.png);
+	background-repeat: repeat;
+	background-color: rgba(44,62,80,0.6);
+	z-index: 2;
+}
+.video-container iframe {
+	position: absolute;
+	z-index: 0;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	opacity: 1;
+	width: 100%;
+	height: 809px;
+	margin-top: -87px;
+	max-width: 4000px !important;
 }
 .video-bg {
   width: 100%;
