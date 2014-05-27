@@ -56,6 +56,8 @@ article:nth-child(2) {
 	transform:rotate(-30deg);
   -ms-transform:rotate(-30deg); /* IE 9 */
   -webkit-transform:rotate(-30deg); /* Opera, Chrome, and Safari */
+  opacity:0.6;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-3 {
 	width: 50px;
@@ -70,6 +72,8 @@ article:nth-child(2) {
 	transform:rotate(14deg);
   -ms-transform:rotate(14deg); /* IE 9 */
   -webkit-transform:rotate(14deg); /* Opera, Chrome, and Safari */
+  opacity:0.8;
+  filter:alpha(opacity=80); /* For IE8 and earlier */
 }
 #parallax-img-5 {
 	width: 40px;
@@ -84,6 +88,8 @@ article:nth-child(2) {
 	transform:rotate(7deg);
   -ms-transform:rotate(7deg); /* IE 9 */
   -webkit-transform:rotate(7deg); /* Opera, Chrome, and Safari */
+  opacity:0.4;
+  filter:alpha(opacity=40); /* For IE8 and earlier */
 }
 #parallax-img-7 {
 	width: 50px;
