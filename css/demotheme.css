@@ -42,14 +42,17 @@ section:nth-of-type(1) {
   text-align: center;
 }
 article {
-  padding: 3em 0
+  padding: 0 0;
+  margin: 0
 }
 section:nth-of-type(1) article:nth-of-type(1) {
   text-align: center;
   position: relative;
   z-index: 10;
-  padding-top: 6em;
   min-height: 100%
+}
+section:nth-of-type(1) article:nth-of-type(1) h1 {
+  padding-top: 2em
 }
 a.btn-download-init {
   border: 1px solid #fff;
@@ -72,12 +75,16 @@ section:nth-of-type(1) article:nth-of-type(1) h3 {
   margin: 1em 0 0.5em 0
 }
 section:nth-of-type(2) article:nth-of-type(1) {
-  background: url('../img/wallpaper-1132086.jpg') fixed center center #333;
+  background: url('../img/wallpaper-1132086.jpg') no-repeat top center fixed;
   width: 100%;
-  height: auto;
+  height: 700px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   text-align: center;
-  color: #fff !important;
-  height: 600px;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
 }
 .video-container{
   position: absolute;

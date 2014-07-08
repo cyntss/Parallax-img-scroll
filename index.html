@@ -7,6 +7,11 @@
   <script src="js/parallaxImg.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="css/demotheme.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <script type="text/javascript">
+    $(document).ready(function($) {
+      
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -16,7 +21,7 @@
   </header>
   <section>
     <div class="video-container">
-      <iframe width="1280" height="720" src="//www.youtube.com/embed/3xAV1h1pRKM?autoplay=1&loop=1&rel=0&start=10&controls=0&showinfo=0" frameborder="0"></iframe>
+      <iframe src="//www.youtube.com/embed/3xAV1h1pRKM?autoplay=1&loop=1&rel=0&start=10&controls=0&showinfo=0" frameborder="0"></iframe>
     </div>
     <div class="video-bg-overlay"></div>
     <article class="parallax-img-container">
@@ -24,7 +29,7 @@
       <h3>Give life to your website</h3>
       <a class="btn-download-init" href="js/parallaxImg.js">Download .JS</a>
       <img id="parallax-img-1" class="parallax-move" src="img/ex.png" />
-      <img id="parallax-img-2" class="parallax-move" src="img/triangle.png" />
+      <img id="parallax-img-2" class="parallax-move" data-vertical-position="0" src="img/triangle.png" />
       <img id="parallax-img-3" class="parallax-move" src="img/square.png" />
       <img id="parallax-img-4" class="parallax-move" src="img/circle.png" />
       <img id="parallax-img-6" class="parallax-move" src="img/triangle.png" />
@@ -50,11 +55,11 @@
       <img id="parallax-img-5" class="parallax-move" src="img/ex.png" />
       <img id="parallax-img-1" class="parallax-move" src="img/triangle.png" />
       <img id="parallax-img-4" class="parallax-move" src="img/square.png" />
-      <img id="parallax-img-3" class="parallax-move" src="img/circle.png" />
+      <img id="parallax-img-3" class="parallax-move" data-vertical-position="0" data-horizontal-position="0" src="img/circle.png" />
       <div id="any-id-name" class="parallax-move">Hello world</div>
     </article>
     <article>
-      <h3>Fork from Github</h3>
+      <h3 class="testOffset">Fork from Github</h3>
     </article>
   </section>
   <footer>
