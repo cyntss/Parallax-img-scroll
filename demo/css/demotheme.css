@@ -2,55 +2,66 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,100,200,700);
 
 body {
-	margin: 0;
-	padding: 0;
-	font: 14px arial;
-	color: #444;
-	overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font: 14px arial;
+  color: #444;
+  overflow-x: hidden;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, nav a  {
   font-family: 'Raleway', sans-serif;
   font-weight: 100
 } 
 h1 {
-	font-size: 5em
+  font-size: 5em
 }
 h2 {
-	font-size: 3.5em
+  font-size: 3.5em
 }
 h3 {
-	font-size: 2.2em
+  font-size: 2.2em
 }
 
 nav {
-	background: rgba(0,0,0,1);
-	text-align: center;
-	padding: 1em 0;
-	color: #fff
+  background: rgba(0,0,0,1);
+  text-align: center;
+  padding: 1em 0;
+  color: #fff
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 2em; 
+}
+nav a:hover {
+  color: #1FE0D4
 }
 section:nth-of-type(1) {
-	position: relative;
-	height: 720px;
-	text-align: center;
+  position: relative;
+  height: 720px;
+  text-align: center;
 }
 article {
-	padding: 3em 0
+  padding: 0 0;
+  margin: 0
 }
 section:nth-of-type(1) article:nth-of-type(1) {
-	text-align: center;
-	position: relative;
-	z-index: 10;
-	padding-top: 6em;
-	min-height: 100%
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  min-height: 100%
+}
+section:nth-of-type(1) article:nth-of-type(1) h1 {
+  padding-top: 2em
 }
 a.btn-download-init {
-	border: 1px solid #fff;
-	color: #fff;
-	display: inline-block;
-	padding: 1em 2em;
-	border-radius: 6px;
-	text-decoration: none;
-	font-family: 'Raleway', sans-serif;
+  border: 1px solid #fff;
+  color: #fff;
+  display: inline-block;
+  padding: 1em 2em;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
   font-weight: 100
 }
 a.btn-download-init:hover {
@@ -60,117 +71,121 @@ a.btn-download-init:hover {
 }
 section:nth-of-type(1) article:nth-of-type(1) h1,
 section:nth-of-type(1) article:nth-of-type(1) h3 {
-	color: #fff;
-	margin: 1em 0 0.5em 0
+  color: #fff;
+  margin: 1em 0 0.5em 0
 }
 section:nth-of-type(2) article:nth-of-type(1) {
-	background: url('../img/wallpaper-1132086.jpg') fixed center center #333;
-	width: 100%;
-	height: auto;
-	text-align: center;
-	color: #fff !important;
-	height: 600px;
+  background: url('../img/wallpaper-1132086.jpg') no-repeat top center fixed;
+  width: 100%;
+  height: 700px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
 }
 .video-container{
-	position: absolute;
-	z-index: 0;
-	min-width: 100%;
-	min-height: 100%;
-	left: 0px;
-	top: 0px;
-	overflow: hidden;
-	opacity: 1;
+  position: absolute;
+  z-index: 0;
+  min-width: 100%;
+  min-height: 100%;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+  opacity: 1;
 }
 .video-bg-overlay {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url(../img/pattern.png);
-	background-repeat: repeat;
-	background-color: rgba(44,62,80,0.6);
-	z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/pattern.png);
+  background-repeat: repeat;
+  background-color: rgba(44,62,80,0.6);
+  z-index: 2;
 }
 .video-container iframe {
-	position: absolute;
-	z-index: 0;
-	top: 0px;
-	left: 0px;
-	overflow: hidden;
-	opacity: 1;
-	width: 100%;
-	height: 809px;
-	margin-top: -87px;
-	max-width: 4000px !important;
+  position: absolute;
+  z-index: 0;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  opacity: 1;
+  width: 100%;
+  height: 809px;
+  margin-top: -87px;
+  max-width: 4000px !important;
 }
 .video-bg {
   width: 100%;
   height: auto;
 }
 #parallax-img-1 {
-	width: 40px;
-	height: auto;
+  width: 40px;
+  height: auto;
   opacity:0.6;
   filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-2 {
-	width: 160px;
-	height: auto;
-	transform:rotate(-30deg);
+  width: 160px;
+  height: auto;
+  transform:rotate(-30deg);
   -ms-transform:rotate(-30deg); /* IE 9 */
   -webkit-transform:rotate(-30deg); /* Opera, Chrome, and Safari */
   opacity:0.2;
   filter:alpha(opacity=20); /* For IE8 and earlier */
 }
 #parallax-img-3 {
-	width: 50px;
-	height: auto;
-	transform:rotate(-12deg);
+  width: 50px;
+  height: auto;
+  transform:rotate(-12deg);
   -ms-transform:rotate(-12deg); /* IE 9 */
   -webkit-transform:rotate(-12deg); /* Opera, Chrome, and Safari */
   opacity:0.6;
   filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-4 {
-	width: 140px;
-	height: auto;
-	transform:rotate(14deg);
+  width: 140px;
+  height: auto;
+  transform:rotate(14deg);
   -ms-transform:rotate(14deg); /* IE 9 */
   -webkit-transform:rotate(14deg); /* Opera, Chrome, and Safari */
   opacity:0.2;
   filter:alpha(opacity=20); /* For IE8 and earlier */
 }
 #parallax-img-5 {
-	width: 40px;
-	height: auto;
-	transform:rotate(14deg);
+  width: 40px;
+  height: auto;
+  transform:rotate(14deg);
   -ms-transform:rotate(14deg); /* IE 9 */
   -webkit-transform:rotate(14deg); /* Opera, Chrome, and Safari */
   opacity:0.3;
   filter:alpha(opacity=30); /* For IE8 and earlier */
 }
 #parallax-img-6 {
-	width: 80px;
-	height: auto;
-	transform:rotate(7deg);
+  width: 80px;
+  height: auto;
+  transform:rotate(7deg);
   -ms-transform:rotate(7deg); /* IE 9 */
   -webkit-transform:rotate(7deg); /* Opera, Chrome, and Safari */
   opacity:0.3;
   filter:alpha(opacity=30); /* For IE8 and earlier */
 }
 #parallax-img-7 {
-	width: 50px;
-	height: auto;
-	transform:rotate(-12deg);
+  width: 50px;
+  height: auto;
+  transform:rotate(-12deg);
   -ms-transform:rotate(-12deg); /* IE 9 */
   -webkit-transform:rotate(-12deg); /* Opera, Chrome, and Safari */
   opacity:0.6;
   filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-8 {
-	width: 150px;
-	height: auto;
-	opacity:0.6;
+  width: 150px;
+  height: auto;
+  opacity:0.6;
   filter:alpha(opacity=60); /* For IE8 and earlier */
 }
