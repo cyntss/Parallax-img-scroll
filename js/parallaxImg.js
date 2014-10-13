@@ -60,24 +60,46 @@ function parallaxImgScroll(settings) {
             "z-index": 100,
             "position": "relative"
           })
-        } else {
-          var ranNumSpeed = Math.floor((Math.random() * 100) + 30);
-          if(ranNumSpeed < 10) {
-            var scrollSpeed = "0.0" + ranNumSpeed;  
-          } else {
-            var scrollSpeed = "0." + ranNumSpeed;
+        }
+        // for all the elements that have the class "parallax-move"
+        else {
+
+          // if the element doesnt have a Speed declared
+          if ($(setOfElements[i]).hasData('ps-speed')) {
+            scrollSpeed = $(setOfElements[i]).data('ps-speed');
+          }
+          else {
+            var ranNumSpeed = Math.floor((Math.random() * 100) + 1);
+            if(ranNumSpeed < 10) {
+              var scrollSpeed = "0.0" + ranNumSpeed;  
+            } 
+            else {
+              var scrollSpeed = "0." + ranNumSpeed;
+            }
           }
 
-          if ($(setOfElements[i]).hasData('vertical-position')) {
-            ranNumTopPosition = $(setOfElements[i]).data('vertical-position');
-          } else {
+          //if the element doesnt have a vertical position declared
+          if ($(setOfElements[i]).hasData('ps-vertical-position')) {
+            ranNumTopPosition = $(setOfElements[i]).data('ps-vertical-position');
+          } 
+          else {
             var ranNumTopPosition = Math.floor(Math.random() * (heightOfContainer - (heightOfContainer/4)) + 1);  
           }
-          
-          if ($(setOfElements[i]).hasData('horizontal-position')) {
-            var ranNumBottomPosition = $(setOfElements[i]).data('horizontal-position');
-          } else {
+
+          //if the element doesnt have am horizontal position declared
+          if ($(setOfElements[i]).hasData('ps-horizontal-position')) {
+            var ranNumBottomPosition = $(setOfElements[i]).data('ps-horizontal-position');
+          }
+          else {
             var ranNumBottomPosition = Math.floor(Math.random() * (widthOfContainer - 200) + 50);  
+          }
+
+          //if the element doesnt have a z-index declared
+          if ($(setOfElements[i]).hasData('ps-z-index')) {
+            var zPosition = $(setOfElements[i]).data('ps-z-index');
+          }
+          else {
+            var zPosition = Math.floor(Math.random() * 10 + 1);  
           }
           
           parallaxElementsArray.push({
@@ -91,11 +113,12 @@ function parallaxImgScroll(settings) {
           /* Apply initial position */
           $(setOfElements[i]).css({
             "bottom": ranNumTopPosition,
-            "left": ranNumBottomPosition
+            "left": ranNumBottomPosition,
+            "z-index": zPosition
           })
         }
       }
-    })
+    });
 
     $(".parallax-img-container").css({
       position: "relative",
