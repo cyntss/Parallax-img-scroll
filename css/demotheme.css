@@ -126,8 +126,6 @@ section:nth-of-type(2) article:nth-of-type(1) {
 #parallax-img-1 {
   width: 40px;
   height: auto;
-  opacity:0.6;
-  filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-2 {
   width: 160px;
@@ -135,8 +133,6 @@ section:nth-of-type(2) article:nth-of-type(1) {
   transform:rotate(-30deg);
   -ms-transform:rotate(-30deg); /* IE 9 */
   -webkit-transform:rotate(-30deg); /* Opera, Chrome, and Safari */
-  opacity:0.2;
-  filter:alpha(opacity=20); /* For IE8 and earlier */
 }
 #parallax-img-3 {
   width: 50px;
@@ -144,8 +140,6 @@ section:nth-of-type(2) article:nth-of-type(1) {
   transform:rotate(-12deg);
   -ms-transform:rotate(-12deg); /* IE 9 */
   -webkit-transform:rotate(-12deg); /* Opera, Chrome, and Safari */
-  opacity:0.6;
-  filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-4 {
   width: 140px;
@@ -153,8 +147,6 @@ section:nth-of-type(2) article:nth-of-type(1) {
   transform:rotate(14deg);
   -ms-transform:rotate(14deg); /* IE 9 */
   -webkit-transform:rotate(14deg); /* Opera, Chrome, and Safari */
-  opacity:0.2;
-  filter:alpha(opacity=20); /* For IE8 and earlier */
 }
 #parallax-img-5 {
   width: 40px;
@@ -162,8 +154,6 @@ section:nth-of-type(2) article:nth-of-type(1) {
   transform:rotate(14deg);
   -ms-transform:rotate(14deg); /* IE 9 */
   -webkit-transform:rotate(14deg); /* Opera, Chrome, and Safari */
-  opacity:0.3;
-  filter:alpha(opacity=30); /* For IE8 and earlier */
 }
 #parallax-img-6 {
   width: 80px;
@@ -171,8 +161,6 @@ section:nth-of-type(2) article:nth-of-type(1) {
   transform:rotate(7deg);
   -ms-transform:rotate(7deg); /* IE 9 */
   -webkit-transform:rotate(7deg); /* Opera, Chrome, and Safari */
-  opacity:0.3;
-  filter:alpha(opacity=30); /* For IE8 and earlier */
 }
 #parallax-img-7 {
   width: 50px;
@@ -180,12 +168,8 @@ section:nth-of-type(2) article:nth-of-type(1) {
   transform:rotate(-12deg);
   -ms-transform:rotate(-12deg); /* IE 9 */
   -webkit-transform:rotate(-12deg); /* Opera, Chrome, and Safari */
-  opacity:0.6;
-  filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 #parallax-img-8 {
   width: 150px;
   height: auto;
-  opacity:0.6;
-  filter:alpha(opacity=60); /* For IE8 and earlier */
 }
