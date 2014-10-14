@@ -28,10 +28,10 @@ function parallaxImgScroll(settings) {
   var scrolled = 0;
 
   $(document).ready(function (){
+
     $(".parallax-move").css({
       'opacity' : 0,
-      position: "absolute",
-      "z-index": 1
+      position: "absolute"
     });
   })
 
@@ -44,6 +44,7 @@ function parallaxImgScroll(settings) {
     $(window).bind('scroll',function(e){
       parallaxImgScroll(); 
     });
+    $(document).scrollTop(0);
   });
 
   /* Initial setup of the elements */
@@ -80,18 +81,18 @@ function parallaxImgScroll(settings) {
 
           //if the element doesnt have a vertical position declared
           if ($(setOfElements[i]).hasData('ps-vertical-position')) {
-            ranNumTopPosition = $(setOfElements[i]).data('ps-vertical-position');
+            TopPosition = $(setOfElements[i]).data('ps-vertical-position');
           } 
           else {
-            var ranNumTopPosition = Math.floor(Math.random() * (heightOfContainer - (heightOfContainer/4)) + 1);  
+            var TopPosition = Math.floor(Math.random() * (heightOfContainer - (heightOfContainer/4)) + 1);  
           }
 
           //if the element doesnt have am horizontal position declared
           if ($(setOfElements[i]).hasData('ps-horizontal-position')) {
-            var ranNumBottomPosition = $(setOfElements[i]).data('ps-horizontal-position');
+            var leftPosition = $(setOfElements[i]).data('ps-horizontal-position');
           }
           else {
-            var ranNumBottomPosition = Math.floor(Math.random() * (widthOfContainer - 200) + 50);  
+            var leftPosition = Math.floor(Math.random() * (widthOfContainer - 200) + 50);  
           }
 
           //if the element doesnt have a z-index declared
@@ -105,15 +106,15 @@ function parallaxImgScroll(settings) {
           parallaxElementsArray.push({
             "element" : $(setOfElements[i]),
             "scrollSpeed" : scrollSpeed,
-            "horizontalPagePosition" : ranNumBottomPosition,
-            "verticalPagePosition" : ranNumTopPosition,
+            "horizontalPagePosition" : leftPosition,
+            "verticalPagePosition" : TopPosition,
             "opacity" : parallaxSettings.initialOpacity
           });
 
           /* Apply initial position */
           $(setOfElements[i]).css({
-            "bottom": ranNumTopPosition,
-            "left": ranNumBottomPosition,
+            "bottom": TopPosition,
+            "left": leftPosition,
             "z-index": zPosition
           })
         }
@@ -128,16 +129,21 @@ function parallaxImgScroll(settings) {
   }
 
   /* Move the images while scrolling the page */
-  function parallaxImgScroll(){
+  function parallaxImgScroll() {
 
     for (i = 0; i < parallaxElementsArray.length; i++) {
       
       scrolled = $(window).scrollTop();
       alpha = parallaxElementsArray[i].opacity;
+
       /* Calculate the distance between the element and the top of the document */
       var distanceFromTop = $(parallaxElementsArray[i].element).offset().top;
 
-      if (isVisible(distanceFromTop)) {
+      if (parallaxElementsArray[0]) {
+        console.log(scrolled, alpha, distanceFromTop, isVisible(distanceFromTop), scrolled * parallaxElementsArray[i].scrollSpeed)
+      }
+
+      if (isVisible(distanceFromTop) || !isVisible(distanceFromTop) ) {
         /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
         if (parallaxSettings.initialOpacity != 1) {
           /* if scrolling down */
@@ -181,9 +187,10 @@ function parallaxImgScroll(settings) {
     }
   }
 
-  /* check if a data attribute exists */
-  $.fn.hasData = function(attrName) {
-    return (typeof $(this).data(attrName) != 'undefined');
-  };
-
 }
+
+/* check if a data attribute exists */
+$.fn.hasData = function(attrName) {
+  return (typeof $(this).data(attrName) != 'undefined');
+};
+
