@@ -139,11 +139,7 @@ function parallaxImgScroll(settings) {
       /* Calculate the distance between the element and the top of the document */
       var distanceFromTop = $(parallaxElementsArray[i].element).offset().top;
 
-      if (parallaxElementsArray[0]) {
-        console.log(scrolled, alpha, distanceFromTop, isVisible(distanceFromTop), scrolled * parallaxElementsArray[i].scrollSpeed)
-      }
-
-      if (isVisible(distanceFromTop) || !isVisible(distanceFromTop) ) {
+      if (isVisible(distanceFromTop)) {
         /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
         if (parallaxSettings.initialOpacity != 1) {
           /* if scrolling down */
@@ -165,24 +161,31 @@ function parallaxImgScroll(settings) {
           alpha = parallaxSettings.initialOpacity;
         }
         $(parallaxElementsArray[i].element).css({
-          'bottom': (parallaxElementsArray[i].verticalPagePosition + (scrolled * parallaxElementsArray[i].scrollSpeed))+'px',
           "opacity" : alpha
           });
 
         /* save the opacity in the elements object */
         parallaxElementsArray[i].opacity = alpha;
-      }      
+      }
+      $(parallaxElementsArray[i].element).css({
+        'bottom': (parallaxElementsArray[i].verticalPagePosition + (scrolled * parallaxElementsArray[i].scrollSpeed))+'px'
+        }); 
     }
     lastestScrolled = scrolled;
 
     /* check if the element is visible on screen */
     function isVisible(distance) {
       if (distance < scrolled) {
+        console.log(distance, scrolled, "false")
         return false;
       } else if ([scrolled + $(window).height()] < distance) {
+        console.log(distance, [scrolled + $(window).height()], "false")
         return false;
+        
       } else {
+        console.log(distance, scrolled, "true")
         return true;
+
       }
     }
   }

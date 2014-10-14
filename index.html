@@ -10,7 +10,7 @@
   <script type="text/javascript">
     $(document).on("ready", function() {
       var parallaxSettings = { 
-        initialOpacity: 1, //from 0 to 1, e.g. 0.34 is a valid value. 0 = transparent, 1 = Opaque
+        initialOpacity: 0.8, //from 0 to 1, e.g. 0.34 is a valid value. 0 = transparent, 1 = Opaque
         opacitySpeed: 0.1 //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
       };
 
@@ -41,15 +41,14 @@
       <img src="img/assassins/003.png" class="parallax-move" data-ps-z-index="2" data-ps-speed="0.2" data-ps-vertical-position="-400" data-ps-horizontal-position="0" />
       <img src="img/assassins/002.png" class="parallax-move" data-ps-z-index="3" data-ps-speed="0.5" data-ps-vertical-position="-800" data-ps-horizontal-position="0" />
       <img src="img/assassins/birds.png" class="parallax-move" data-ps-z-index="4" data-ps-speed="1" data-ps-vertical-position="-1200" data-ps-horizontal-position="600" />
+      <img src="img/assassins/black-cloud.png" class="parallax-move" data-ps-z-index="5" data-ps-speed="0.5" data-ps-vertical-position="-1100" data-ps-horizontal-position="0">
     </article>
   </section>
   <section>
     <article class="parallax-img-container">
       <h2>Fixed content</h2>
       <p>All the content inside the article will not be affected by parallaximg.js</p>
-      <h3>I made this inspired by a PlayStation game: Tearaway</h3>
-      <p>So here a little tribute to this great game:</p>
-      <img id="parallax-img-8" class="parallax-move" src="img/sly.png" />
+      <h3>I made this inspired by PlayStation and Assassins Unity</h3>
       <img id="parallax-img-2" class="parallax-move" src="img/triangle.png" />
       <img id="parallax-img-3" class="parallax-move" src="img/square.png" />
       <img id="parallax-img-4" class="parallax-move" src="img/circle.png" />
@@ -61,7 +60,6 @@
       <img id="parallax-img-1" class="parallax-move" src="img/triangle.png" />
       <img id="parallax-img-4" class="parallax-move" src="img/square.png" />
       <img id="parallax-img-3" class="parallax-move" data-ps-vertical-position="0" data-ps-horizontal-position="0" src="img/circle.png" />
-      <div id="any-id-name" class="parallax-move">Hello world</div>
     </article>
     <article>
       <h3 class="testOffset">Fork from Github</h3>
