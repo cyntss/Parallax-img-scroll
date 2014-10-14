@@ -37,19 +37,14 @@ nav a:hover {
   color: #1FE0D4
 }
 section:nth-of-type(1) {
-  position: relative;
-  height: 720px;
+  background: url("../img/assassins/bg.jpg");
+  height: 1950px;
   text-align: center;
 }
 article {
   padding: 0 0;
-  margin: 0
-}
-section:nth-of-type(1) article:nth-of-type(1) {
-  text-align: center;
-  position: relative;
-  z-index: 10;
-  min-height: 100%
+  margin: 0;
+  height: 100%
 }
 section:nth-of-type(1) article:nth-of-type(1) h1 {
   padding-top: 2em
