@@ -108,7 +108,8 @@ function parallaxImgScroll(settings) {
             "scrollSpeed" : scrollSpeed,
             "horizontalPagePosition" : leftPosition,
             "verticalPagePosition" : TopPosition,
-            "opacity" : parallaxSettings.initialOpacity
+            "opacity" : parallaxSettings.initialOpacity,
+            "privateScrolled" : 0
           });
 
           /* Apply initial position */
@@ -130,62 +131,79 @@ function parallaxImgScroll(settings) {
 
   /* Move the images while scrolling the page */
   function parallaxImgScroll() {
-
+    
+    scrolled = $(window).scrollTop();
+    
     for (i = 0; i < parallaxElementsArray.length; i++) {
       
-      scrolled = $(window).scrollTop();
       alpha = parallaxElementsArray[i].opacity;
 
       /* Calculate the distance between the element and the top of the document */
       var distanceFromTop = $(parallaxElementsArray[i].element).offset().top;
+      var distanceFromTopOfWindow = distanceFromTop - scrolled;
+      var elementHeight = $(parallaxElementsArray[i].element).height();
 
-      if (isVisible(distanceFromTop)) {
-        /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
-        if (parallaxSettings.initialOpacity != 1) {
-          /* if scrolling down */
-          if (lastestScrolled < scrolled) {
+      if (isVisible(distanceFromTop, elementHeight)) {
+        
+        /* if scrolling down */
+        if (lastestScrolled < scrolled) {
+          /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
+          if (parallaxSettings.initialOpacity != 1) {
             alpha = alpha + parallaxSettings.opacitySpeed;
             if (alpha > 1) {
               alpha = 1;
             }
-          } else if (scrolled == 0) {
-            alpha = parallaxSettings.initialOpacity;
-          /* else.. if scrolling up */
           } else {
+            alpha = parallaxSettings.initialOpacity;
+          }
+          //save the scrolling for this element
+          parallaxElementsArray[i].privateScrolled = parallaxElementsArray[i].privateScrolled + (scrolled - lastestScrolled);
+        } 
+        else if (scrolled == 0) {
+          alpha = parallaxSettings.initialOpacity;
+          parallaxElementsArray[i].privateScrolled = 0;
+        /* else.. if scrolling up */
+        } 
+        else {
+          /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
+          if (parallaxSettings.initialOpacity != 1) {
             alpha = alpha - parallaxSettings.opacitySpeed;
             if (alpha < parallaxSettings.initialOpacity) {
               alpha = parallaxSettings.initialOpacity;
             }
+          } else {
+            alpha = parallaxSettings.initialOpacity;
           }
-        } else {
-          alpha = parallaxSettings.initialOpacity;
+          //save the scrolling for this element
+          parallaxElementsArray[i].privateScrolled = parallaxElementsArray[i].privateScrolled - (lastestScrolled - scrolled);  
         }
+
+        console.log(parallaxElementsArray[i].privateScrolled)
+
         $(parallaxElementsArray[i].element).css({
-          "opacity" : alpha
+          "opacity" : alpha,
+          'bottom': (parallaxElementsArray[i].verticalPagePosition + (parallaxElementsArray[i].privateScrolled * parallaxElementsArray[i].scrollSpeed)) + 'px'
           });
 
         /* save the opacity in the elements object */
         parallaxElementsArray[i].opacity = alpha;
       }
-      $(parallaxElementsArray[i].element).css({
-        'bottom': (parallaxElementsArray[i].verticalPagePosition + (scrolled * parallaxElementsArray[i].scrollSpeed))+'px'
-        }); 
     }
     lastestScrolled = scrolled;
 
     /* check if the element is visible on screen */
-    function isVisible(distance) {
-      if (distance < scrolled) {
-        console.log(distance, scrolled, "false")
+    function isVisible(distance, height) {
+      //if it went up and off the screen
+      if ([distance + height] < scrolled) {
         return false;
-      } else if ([scrolled + $(window).height()] < distance) {
-        console.log(distance, [scrolled + $(window).height()], "false")
+      } 
+      //if if didnt appear from belog yet
+      else if ([scrolled + $(window).height()] < distance) {
         return false;
-        
-      } else {
-        console.log(distance, scrolled, "true")
+      }
+      //if it is being displayed on screen 
+      else {
         return true;
-
       }
     }
   }
