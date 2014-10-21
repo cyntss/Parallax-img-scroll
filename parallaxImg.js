@@ -28,10 +28,10 @@ function parallaxImgScroll(settings) {
   var scrolled = 0;
 
   $(document).ready(function (){
+
     $(".parallax-move").css({
       'opacity' : 0,
-      position: "absolute",
-      "z-index": 1
+      position: "absolute"
     });
   })
 
@@ -44,6 +44,7 @@ function parallaxImgScroll(settings) {
     $(window).bind('scroll',function(e){
       parallaxImgScroll(); 
     });
+    $(document).scrollTop(0);
   });
 
   /* Initial setup of the elements */
@@ -60,42 +61,66 @@ function parallaxImgScroll(settings) {
             "z-index": 100,
             "position": "relative"
           })
-        } else {
-          var ranNumSpeed = Math.floor((Math.random() * 100) + 30);
-          if(ranNumSpeed < 10) {
-            var scrollSpeed = "0.0" + ranNumSpeed;  
-          } else {
-            var scrollSpeed = "0." + ranNumSpeed;
+        }
+        // for all the elements that have the class "parallax-move"
+        else {
+
+          // if the element doesnt have a Speed declared
+          if ($(setOfElements[i]).hasData('ps-speed')) {
+            scrollSpeed = $(setOfElements[i]).data('ps-speed');
+          }
+          else {
+            var ranNumSpeed = Math.floor((Math.random() * 100) + 1);
+            if(ranNumSpeed < 10) {
+              var scrollSpeed = "0.0" + ranNumSpeed;  
+            } 
+            else {
+              var scrollSpeed = "0." + ranNumSpeed;
+            }
           }
 
-          if ($(setOfElements[i]).hasData('vertical-position')) {
-            ranNumTopPosition = $(setOfElements[i]).data('vertical-position');
-          } else {
-            var ranNumTopPosition = Math.floor(Math.random() * (heightOfContainer - (heightOfContainer/4)) + 1);  
+          //if the element doesnt have a vertical position declared
+          if ($(setOfElements[i]).hasData('ps-vertical-position')) {
+            TopPosition = $(setOfElements[i]).data('ps-vertical-position');
+          } 
+          else {
+            var TopPosition = Math.floor(Math.random() * (heightOfContainer - (heightOfContainer/4)) + 1);  
           }
-          
-          if ($(setOfElements[i]).hasData('horizontal-position')) {
-            var ranNumBottomPosition = $(setOfElements[i]).data('horizontal-position');
-          } else {
-            var ranNumBottomPosition = Math.floor(Math.random() * (widthOfContainer - 200) + 50);  
+
+          //if the element doesnt have am horizontal position declared
+          if ($(setOfElements[i]).hasData('ps-horizontal-position')) {
+            var leftPosition = $(setOfElements[i]).data('ps-horizontal-position');
+          }
+          else {
+            var leftPosition = Math.floor(Math.random() * (widthOfContainer - 200) + 50);  
+          }
+
+          //if the element doesnt have a z-index declared
+          if ($(setOfElements[i]).hasData('ps-z-index')) {
+            var zPosition = $(setOfElements[i]).data('ps-z-index');
+          }
+          else {
+            var zPosition = Math.floor(Math.random() * 10 + 1);  
           }
           
           parallaxElementsArray.push({
             "element" : $(setOfElements[i]),
             "scrollSpeed" : scrollSpeed,
-            "horizontalPagePosition" : ranNumBottomPosition,
-            "verticalPagePosition" : ranNumTopPosition,
-            "opacity" : parallaxSettings.initialOpacity
+            "horizontalPagePosition" : leftPosition,
+            "verticalPagePosition" : TopPosition,
+            "opacity" : parallaxSettings.initialOpacity,
+            "privateScrolled" : 0
           });
 
           /* Apply initial position */
           $(setOfElements[i]).css({
-            "bottom": ranNumTopPosition,
-            "left": ranNumBottomPosition
+            "bottom": TopPosition,
+            "left": leftPosition,
+            "z-index": zPosition
           })
         }
       }
-    })
+    });
 
     $(".parallax-img-container").css({
       position: "relative",
@@ -105,62 +130,88 @@ function parallaxImgScroll(settings) {
   }
 
   /* Move the images while scrolling the page */
-  function parallaxImgScroll(){
-
+  function parallaxImgScroll() {
+    
+    scrolled = $(window).scrollTop();
+    
     for (i = 0; i < parallaxElementsArray.length; i++) {
       
-      scrolled = $(window).scrollTop();
       alpha = parallaxElementsArray[i].opacity;
+
       /* Calculate the distance between the element and the top of the document */
       var distanceFromTop = $(parallaxElementsArray[i].element).offset().top;
+      var distanceFromTopOfWindow = distanceFromTop - scrolled;
+      var elementHeight = $(parallaxElementsArray[i].element).height();
 
-      if (isVisible(distanceFromTop)) {
-        /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
-        if (parallaxSettings.initialOpacity != 1) {
-          /* if scrolling down */
-          if (lastestScrolled < scrolled) {
+      if (isVisible(distanceFromTop, elementHeight)) {
+        
+        /* if scrolling down */
+        if (lastestScrolled < scrolled) {
+          /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
+          if (parallaxSettings.initialOpacity != 1) {
             alpha = alpha + parallaxSettings.opacitySpeed;
             if (alpha > 1) {
               alpha = 1;
             }
-          } else if (scrolled == 0) {
-            alpha = parallaxSettings.initialOpacity;
-          /* else.. if scrolling up */
           } else {
+            alpha = parallaxSettings.initialOpacity;
+          }
+          //save the scrolling for this element
+          parallaxElementsArray[i].privateScrolled = parallaxElementsArray[i].privateScrolled + (scrolled - lastestScrolled);
+        } 
+        else if (scrolled == 0) {
+          alpha = parallaxSettings.initialOpacity;
+          parallaxElementsArray[i].privateScrolled = 0;
+        /* else.. if scrolling up */
+        } 
+        else {
+          /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
+          if (parallaxSettings.initialOpacity != 1) {
             alpha = alpha - parallaxSettings.opacitySpeed;
             if (alpha < parallaxSettings.initialOpacity) {
               alpha = parallaxSettings.initialOpacity;
             }
+          } else {
+            alpha = parallaxSettings.initialOpacity;
           }
-        } else {
-          alpha = parallaxSettings.initialOpacity;
+          //save the scrolling for this element
+          parallaxElementsArray[i].privateScrolled = parallaxElementsArray[i].privateScrolled - (lastestScrolled - scrolled);  
         }
+
+        console.log(parallaxElementsArray[i].privateScrolled)
+
         $(parallaxElementsArray[i].element).css({
-          'bottom': (parallaxElementsArray[i].verticalPagePosition + (scrolled * parallaxElementsArray[i].scrollSpeed))+'px',
-          "opacity" : alpha
+          "opacity" : alpha,
+          'bottom': (parallaxElementsArray[i].verticalPagePosition + (parallaxElementsArray[i].privateScrolled * parallaxElementsArray[i].scrollSpeed)) + 'px'
           });
 
         /* save the opacity in the elements object */
         parallaxElementsArray[i].opacity = alpha;
-      }      
+      }
     }
     lastestScrolled = scrolled;
 
     /* check if the element is visible on screen */
-    function isVisible(distance) {
-      if (distance < scrolled) {
+    function isVisible(distance, height) {
+      //if it went up and off the screen
+      if ([distance + height] < scrolled) {
         return false;
-      } else if ([scrolled + $(window).height()] < distance) {
+      } 
+      //if if didnt appear from belog yet
+      else if ([scrolled + $(window).height()] < distance) {
         return false;
-      } else {
+      }
+      //if it is being displayed on screen 
+      else {
         return true;
       }
     }
   }
 
-  /* check if a data attribute exists */
-  $.fn.hasData = function(attrName) {
-    return (typeof $(this).data(attrName) != 'undefined');
-  };
-
 }
+
+/* check if a data attribute exists */
+$.fn.hasData = function(attrName) {
+  return (typeof $(this).data(attrName) != 'undefined');
+};
+
