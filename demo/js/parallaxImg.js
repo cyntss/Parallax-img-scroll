@@ -177,8 +177,6 @@ function parallaxImgScroll(settings) {
           parallaxElementsArray[i].privateScrolled = parallaxElementsArray[i].privateScrolled - (lastestScrolled - scrolled);  
         }
 
-        console.log(parallaxElementsArray[i].privateScrolled)
-
         $(parallaxElementsArray[i].element).css({
           "opacity" : alpha,
           'bottom': (parallaxElementsArray[i].verticalPagePosition + (parallaxElementsArray[i].privateScrolled * parallaxElementsArray[i].scrollSpeed)) + 'px'
