@@ -82,9 +82,7 @@ However, in most of the cases you may need to set a fixed initial position for y
 data-ps-horizontal-position: This is where you set up the horizontal position (yes, the name says it). In this case the behaviour is similar to the one stated above but the property added in this case in CSS is <strong>Left</strong>, which means if you declare this attribute for your element as <strong>data-ps-horizontal-position="50"</strong> this will have a distance of 50px between the left side of the window and the actual element.
 </li>
 <h4>An example:</h4>
-<pre>
-<div src="img/assassins/smoke-01.png" class="parallax-move" data-ps-z-index="1" data-ps-speed="1" data-ps-vertical-position="700" data-ps-horizontal-position="420"></div>
-</pre>
+<pre>&lt;div src='img/assassins/smoke-01.png' class='parallax-move' data-ps-z-index="1" data-ps-speed="1" data-ps-vertical-position="700" data-ps-horizontal-position="420"&gt;&lt;/div&gt;</pre>
 In this case you can see this image is the lowest one in the layer <strong>data-ps-z-index="1"</strong>, it has a scrolling speed of 1 <strong> data-ps-speed="1"</strong>, and it has a vertical position of 700px from the bottom and 420px from the left side of the window <strong>data-ps-vertical-position="700" data-ps-horizontal-position="420"</strong>
 </ul>
 </li>
