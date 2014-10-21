@@ -35,9 +35,59 @@ IMPORTANT: The use of Parallax-img-scroll is free for both personal and commmerc
       &lt;p class="parallax-move"&gt;text that will move&lt;/p&gt;
     &lt;/div&gt;
   </pre>
+  <h4>Important!</h4>
+   <ul>
+     <li>The container with class="parallax-img-container" can have multiple classes.</li>
+     <li>There must be a parent container with a fixed height in order for you to be able to whether give the fixed position to your floating elements, or for Parallax-img-scroll to give a random position inside the container.</li>
+   </ul>
 </li>
 </ul>
+<h2>Options</h2>
+<ul>
+<li>
+<h3>Global Parameters</h3>
+When initiating Parallax-img-scroll you can pass an object with two parameters as stated below:
+<pre>
+  $(document).on("ready", function() {
+    var parallaxSettings = { 
+      initialOpacity: 1, //from 0 to 1, e.g. 0.34 is a valid value. 0 = transparent, 1 = Opaque
+      opacitySpeed: 0.1 //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
+    };
 
+    parallaxImgScroll(parallaxSettings);
+  });
+</pre>
+<h4>initialOpacity</h4>
+Is the initial opacity for all the elements with class="parallax-move".
+Can have a decimal value from 0 to 1 (e.g.: 0, 0.4, 0.9, etc), where 0 means the elements will start transparent and 1 meaning they will appear opaque on screen.
+
+<h4>opacitySpeed</h4>
+Is the speed in which the element will become opaque as the user scrolls down your page.
+Can have a decimal value from 0.01 to 1, where 0.01 means it will veryyyy slowly appear on screen, and 1 means it will become opaque as soon as the user touches the scroll of the mouse ;).
+ATTENTION: 0 is also a valid value, but it means the elements WONT become visible...ever.
+</ul>
+</li>
+<li>
+<h3>Individual Parameters</h3>
+Calling ParallaxImgScroll will assing random positions to the elements containing the class "parallax-move" as well as random scrolling speed.
+This is very useful if you have a design where you need stars, lights, bugs, etc. appearing randomly on the container (with class="parallax-img-container").
+However, in most of the cases you may need to set a fixed initial position for your elements. For that, you can play with the role attribute as stated in the following lines:
+<ul>
+<li>data-ps-z-index: will set the position of the element as a layer. For example, in the <a href="http://cyntss.github.io/Parallax-img-scroll/">demo</a> you can see when you scroll down and see the people appearing, they have been distributed in layers so then one is on top of the other to create this sort of 3D effect that Parallax defines.<br>In order to do so you can give a value of 1 to the element that goes below, then "2" to the element that goes on top of this and "3" to the next element, etc.</li>
+<li>data-ps-speed: This attribute will set the scrolling speed. The value here starts from 0.01 as a veryyyyy slow movement on scroll down, and a number 10 is a very fast element passing by when the user scrolls. (give it a try until you find the speed you need for each of your elements)
+</li>
+<li>data-ps-vertical-position: This is where you can set up the initial Vertical position. Please notice that this vertical position will add the property "bottom: xxx" to your element at the beginning, and then of course update it every time the user scrolls down/up calculating the speed you have declared (or the random one assigned if you didnt declare one). Therefor, if you set a value like <strong>data-ps-vertical-position="100"</strong> it means the element will start 100px from the bottom of the container, that means, it will have a CSS property of <strong>bottom: 100px;</strong>
+</li>
+<li>
+data-ps-horizontal-position: This is where you set up the horizontal position (yes, the name says it). In this case the behaviour is similar to the one stated above but the property added in this case in CSS is <strong>Left</strong>, which means if you declare this attribute for your element as <strong>data-ps-horizontal-position="50"</strong> this will have a distance of 50px between the left side of the window and the actual element.
+</li>
+<h4>An example:</h4>
+<pre>
+<img src="img/assassins/smoke-01.png" class="parallax-move" data-ps-z-index="1" data-ps-speed="1" data-ps-vertical-position="700" data-ps-horizontal-position="420" />
+</pre>
+In this case you can see this image is the lowest one in the layer <strong>data-ps-z-index="1"</strong>, it has a scrolling speed of 1 <strong> data-ps-speed="1"</strong>, and it has a vertical position of 700px from the bottom and 420px from the left side of the window <strong>data-ps-vertical-position="700" data-ps-horizontal-position="420"</strong>
+</ul>
+</li>
 <h2>Dependencies:</h2>
 Make sure to previously include the JQuery script:
 http://jquery.com/download/
