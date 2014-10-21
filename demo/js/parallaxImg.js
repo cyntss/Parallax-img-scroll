@@ -9,7 +9,7 @@
 ╱╱╱╰━━╯http://cynt.co.nf////////////////////
 http://cyntss.github.io/Parallax-img-scroll/
 ////////////////////////////////////////////
-V.1.2.1 - MIT license. Allowed for commercial
+V.1.2.2 - MIT license. Allowed for commercial
 and personal use =D
 */
 
@@ -140,7 +140,6 @@ function parallaxImgScroll(settings) {
 
       /* Calculate the distance between the element and the top of the document */
       var distanceFromTop = $(parallaxElementsArray[i].element).offset().top;
-      var distanceFromTopOfWindow = distanceFromTop - scrolled;
       var elementHeight = $(parallaxElementsArray[i].element).height();
 
       if (isVisible(distanceFromTop, elementHeight)) {
