@@ -83,7 +83,7 @@ data-ps-horizontal-position: This is where you set up the horizontal position (y
 </li>
 <h4>An example:</h4>
 <pre>
-<img src="img/assassins/smoke-01.png" class="parallax-move" data-ps-z-index="1" data-ps-speed="1" data-ps-vertical-position="700" data-ps-horizontal-position="420" />
+<div src="img/assassins/smoke-01.png" class="parallax-move" data-ps-z-index="1" data-ps-speed="1" data-ps-vertical-position="700" data-ps-horizontal-position="420"></div>
 </pre>
 In this case you can see this image is the lowest one in the layer <strong>data-ps-z-index="1"</strong>, it has a scrolling speed of 1 <strong> data-ps-speed="1"</strong>, and it has a vertical position of 700px from the bottom and 420px from the left side of the window <strong>data-ps-vertical-position="700" data-ps-horizontal-position="420"</strong>
 </ul>
