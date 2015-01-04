@@ -2,6 +2,8 @@ Parallax-img-scroll
 ===================
 IMPORTANT: The use of Parallax-img-scroll is free for both personal and commmercial use.
 
+<h2></h2>
+DEMO: <a href="http://cyntss.github.io/Parallax-img-scroll/"> Parallax Image Scroll</a>
 <h2>Installing</h2>
 <ul>
 <li>
