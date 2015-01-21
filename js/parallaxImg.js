@@ -9,7 +9,7 @@
 ╱╱╱╰━━╯http://cynt.co.nf////////////////////
 http://cyntss.github.io/Parallax-img-scroll/
 ////////////////////////////////////////////
-V.1.2.4 - MIT license. Allowed for commercial
+V.1.2.5 - MIT license. Allowed for commercial
 and personal use =D
 */
 
@@ -24,7 +24,7 @@ function parallaxImgScroll(settings) {
   var default_settings = {
     initialOpacity : 0, //from 0 to 1, e.g. 0.34 is a valid value. 0 = transparent, 1 = Opaque
     opacitySpeed : 0.02, //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
-    pageLoader: true // boolean type
+    pageLoader: false // boolean type
   }
   var parallaxSettings = $.extend({}, default_settings, settings);
 
@@ -44,14 +44,20 @@ function parallaxImgScroll(settings) {
       var loadingMaringTop = $(window).height() / 2
       $("body").wrapInner( "<div class='parallaxImg-page'></div>");
       $("body").css({
-        height: '100%'
+        height: '100%',
+        width: '100%'
       })
-      $("body").prepend("<div class='loading-page'></div>").css({
+      $("body").prepend("<div class='parallaxImg-loading-page'></div>")
+      $(".parallaxImg-loading-page").css({
+        position: 'absolute',
+        top: '0px',
+        left: '0px',
         width: '100%',
         height: '100%',
         background: '#333',
       })
-      $(".loading-page").prepend("<div class='loading-text'>Loading Page</div>").css({
+      $(".parallaxImg-loading-page").prepend("<div class='parallaxImg-loading-text'>Loading Page</div>")
+      $(".parallaxImg-loading-text").css({
         width: '300px',
         'margin-left': 'auto',
         'margin-right': 'auto',
@@ -68,17 +74,23 @@ function parallaxImgScroll(settings) {
     $(".parallax-move").css({
       'opacity' : parallaxSettings.initialOpacity
     });
-    parallaxImgInit();
+
+    if (parallaxSettings.pageLoader) {
+      $(".parallaxImg-loading-page").fadeOut('600', function() {
+        $(".parallaxImg-page").fadeIn()
+        $(this).remove()
+        parallaxImgInit();
+      })
+    }
+    else {
+      parallaxImgInit();
+    }
+
     /* Scroll event to trigger the function */
     $(window).bind('scroll',function(e){
       parallaxImgScroll();
     });
 
-    if (parallaxSettings.pageLoader) {
-      $(".loading-page").fadeOut('600', function() {
-        $(".parallaxImg-page").fadeIn()
-      });
-    }
   });
 
   /* Initial setup of the elements */
@@ -99,7 +111,7 @@ function parallaxImgScroll(settings) {
         // for all the elements that have the class "parallax-move"
         else {
 
-          // if the element doesnt have a Speed declared
+          // if the element has a Speed declared
           if ($(setOfElements[i]).hasData('ps-speed')) {
             scrollSpeed = $(setOfElements[i]).data('ps-speed');
           }
@@ -113,7 +125,7 @@ function parallaxImgScroll(settings) {
             }
           }
 
-          //if the element doesnt have a vertical position declared
+          //if the element has a vertical position declared
           if ($(setOfElements[i]).hasData('ps-vertical-position')) {
             TopPosition = $(setOfElements[i]).data('ps-vertical-position');
           }
@@ -121,15 +133,15 @@ function parallaxImgScroll(settings) {
             var TopPosition = Math.floor(Math.random() * (heightOfContainer - (heightOfContainer/4)) + 1);
           }
 
-          //if the element doesnt have am horizontal position declared
+          //if the element has am horizontal position declared
           if ($(setOfElements[i]).hasData('ps-horizontal-position')) {
             var leftPosition = $(setOfElements[i]).data('ps-horizontal-position');
           }
           else {
-            var leftPosition = Math.floor(Math.random() * (widthOfContainer - 200) + 50);
+            var leftPosition = Math.floor(Math.random() * (widthOfContainer - 100) + 50);
           }
 
-          //if the element doesnt have a z-index declared
+          //if the element has a z-index declared
           if ($(setOfElements[i]).hasData('ps-z-index')) {
             var zPosition = $(setOfElements[i]).data('ps-z-index');
           }
