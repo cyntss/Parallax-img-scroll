@@ -2,8 +2,15 @@ Parallax-img-scroll
 ===================
 IMPORTANT: The use of Parallax-img-scroll is free for both personal and commmercial use.
 
-<h2></h2>
-DEMO: <a href="http://cyntss.github.io/Parallax-img-scroll/"> Parallax Image Scroll</a>
+DEMO: <a href="http://cyntss.github.io/Parallax-img-scroll/" target="_blank"> Parallax Image Scroll</a>
+
+Other pages using it:
+<a href="http://trivialine.herokuapp.com/" target="_blank">TriviaLine</a>
+
+<h3>Whats new in version 1.2.5</h3>
+* Page reload fix. Scroll to top on page load.
+* Page Loader added: adds a "Loading Page" which fades out after all images have been loaded. Simply set "pageLoader: true" in your configuration.
+
 <h2>Installing</h2>
 <ul>
 <li>
@@ -67,7 +74,11 @@ Can have a decimal value from 0 to 1 (e.g.: 0, 0.4, 0.9, etc), where 0 means the
 Is the speed in which the element will become opaque as the user scrolls down your page.
 Can have a decimal value from 0.01 to 1, where 0.01 means it will veryyyy slowly appear on screen, and 1 means it will become opaque as soon as the user touches the scroll of the mouse ;).
 ATTENTION: 0 is also a valid value, but it means the elements WONT become visible...ever.
-</ul>
+
+<h4>pageLoader</h4>
+This option of type Boolean (true/false) will add a "loading page" div while the page is being loaded. The div will disappear once all the images and elements have been loaded and your page will fade into the screen.
+It is set to False by default by I recommend you setting it as True when you initialize ParallaxImgScroll as it will avoid the user from seing any imperfection of the screen being rendered para Parallax.
+
 </li>
 <li>
 <h3>Individual Parameters</h3>
