@@ -9,9 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <script type="text/javascript">
     $(document).on("ready", function() {
-      var parallaxSettings = { 
+      var parallaxSettings = {
         initialOpacity: 1, //from 0 to 1, e.g. 0.34 is a valid value. 0 = transparent, 1 = Opaque
-        opacitySpeed: 0.1 //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
+        opacitySpeed: 0.1, //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
+        pageLoader: true
       };
 
       parallaxImgScroll(parallaxSettings);
@@ -61,7 +62,7 @@
       <img id="parallax-img-5" class="parallax-move" src="img/ex.png" />
       <img id="parallax-img-1" class="parallax-move" src="img/triangle.png" />
       <img id="parallax-img-4" class="parallax-move" src="img/square.png" />
-      <img id="parallax-img-3" class="parallax-move" data-ps-vertical-position="0" data-ps-horizontal-position="0" src="img/circle.png" />
+      <img id="parallax-img-3" class="parallax-move" data-ps-vertical-position="200" data-ps-horizontal-position="500" src="img/circle.png" />
     </article>
     <article>
       <h3 class="testOffset">Fork from Github</h3>

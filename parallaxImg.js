@@ -9,16 +9,22 @@
 ╱╱╱╰━━╯http://cynt.co.nf////////////////////
 http://cyntss.github.io/Parallax-img-scroll/
 ////////////////////////////////////////////
-V.1.2.2 - MIT license. Allowed for commercial
+V.1.2.5 - MIT license. Allowed for commercial
 and personal use =D
 */
+
+//reset the scroll to 0 (top of page)
+$(window).on('beforeunload', function() {
+  $(window).scrollTop(0);
+});
 
 function parallaxImgScroll(settings) {
 
   //if the user is setting the configuration
   var default_settings = {
-    initialOpacity : 0,
-    opacitySpeed : 0.02 //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
+    initialOpacity : 0, //from 0 to 1, e.g. 0.34 is a valid value. 0 = transparent, 1 = Opaque
+    opacitySpeed : 0.02, //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
+    pageLoader: false // boolean type
   }
   var parallaxSettings = $.extend({}, default_settings, settings);
 
@@ -33,18 +39,58 @@ function parallaxImgScroll(settings) {
       'opacity' : 0,
       position: "absolute"
     });
+
+    if (parallaxSettings.pageLoader) {
+      var loadingMaringTop = $(window).height() / 2
+      $("body").wrapInner( "<div class='parallaxImg-page'></div>");
+      $("body").css({
+        height: '100%',
+        width: '100%'
+      })
+      $("body").prepend("<div class='parallaxImg-loading-page'></div>")
+      $(".parallaxImg-loading-page").css({
+        position: 'absolute',
+        top: '0px',
+        left: '0px',
+        width: '100%',
+        height: '100%',
+        background: '#333',
+      })
+      $(".parallaxImg-loading-page").prepend("<div class='parallaxImg-loading-text'>Loading Page</div>")
+      $(".parallaxImg-loading-text").css({
+        width: '300px',
+        'margin-left': 'auto',
+        'margin-right': 'auto',
+        'text-align': 'center',
+        'padding-top': loadingMaringTop + 'px'
+      })
+
+      $(".parallaxImg-page").hide()
+    }
+
   })
 
   $(window).load(function() {
     $(".parallax-move").css({
       'opacity' : parallaxSettings.initialOpacity
     });
-    parallaxImgInit();
+
+    if (parallaxSettings.pageLoader) {
+      $(".parallaxImg-loading-page").fadeOut('600', function() {
+        $(".parallaxImg-page").fadeIn()
+        $(this).remove()
+        parallaxImgInit();
+      })
+    }
+    else {
+      parallaxImgInit();
+    }
+
     /* Scroll event to trigger the function */
     $(window).bind('scroll',function(e){
-      parallaxImgScroll(); 
+      parallaxImgScroll();
     });
-    $(document).scrollTop(0);
+
   });
 
   /* Initial setup of the elements */
@@ -65,44 +111,44 @@ function parallaxImgScroll(settings) {
         // for all the elements that have the class "parallax-move"
         else {
 
-          // if the element doesnt have a Speed declared
+          // if the element has a Speed declared
           if ($(setOfElements[i]).hasData('ps-speed')) {
             scrollSpeed = $(setOfElements[i]).data('ps-speed');
           }
           else {
             var ranNumSpeed = Math.floor((Math.random() * 100) + 1);
             if(ranNumSpeed < 10) {
-              var scrollSpeed = "0.0" + ranNumSpeed;  
-            } 
+              var scrollSpeed = "0.0" + ranNumSpeed;
+            }
             else {
               var scrollSpeed = "0." + ranNumSpeed;
             }
           }
 
-          //if the element doesnt have a vertical position declared
+          //if the element has a vertical position declared
           if ($(setOfElements[i]).hasData('ps-vertical-position')) {
             TopPosition = $(setOfElements[i]).data('ps-vertical-position');
-          } 
+          }
           else {
-            var TopPosition = Math.floor(Math.random() * (heightOfContainer - (heightOfContainer/4)) + 1);  
+            var TopPosition = Math.floor(Math.random() * (heightOfContainer - (heightOfContainer/4)) + 1);
           }
 
-          //if the element doesnt have am horizontal position declared
+          //if the element has am horizontal position declared
           if ($(setOfElements[i]).hasData('ps-horizontal-position')) {
             var leftPosition = $(setOfElements[i]).data('ps-horizontal-position');
           }
           else {
-            var leftPosition = Math.floor(Math.random() * (widthOfContainer - 200) + 50);  
+            var leftPosition = Math.floor(Math.random() * (widthOfContainer - 100) + 50);
           }
 
-          //if the element doesnt have a z-index declared
+          //if the element has a z-index declared
           if ($(setOfElements[i]).hasData('ps-z-index')) {
             var zPosition = $(setOfElements[i]).data('ps-z-index');
           }
           else {
-            var zPosition = Math.floor(Math.random() * 10 + 1);  
+            var zPosition = Math.floor(Math.random() * 10 + 1);
           }
-          
+
           parallaxElementsArray.push({
             "element" : $(setOfElements[i]),
             "scrollSpeed" : scrollSpeed,
@@ -131,11 +177,11 @@ function parallaxImgScroll(settings) {
 
   /* Move the images while scrolling the page */
   function parallaxImgScroll() {
-    
+
     scrolled = $(window).scrollTop();
-    
+
     for (i = 0; i < parallaxElementsArray.length; i++) {
-      
+
       alpha = parallaxElementsArray[i].opacity;
 
       /* Calculate the distance between the element and the top of the document */
@@ -143,7 +189,7 @@ function parallaxImgScroll(settings) {
       var elementHeight = $(parallaxElementsArray[i].element).height();
 
       if (isVisible(distanceFromTop, elementHeight)) {
-        
+
         /* if scrolling down */
         if (lastestScrolled < scrolled) {
           /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
@@ -157,12 +203,12 @@ function parallaxImgScroll(settings) {
           }
           //save the scrolling for this element
           parallaxElementsArray[i].privateScrolled = parallaxElementsArray[i].privateScrolled + (scrolled - lastestScrolled);
-        } 
+        }
         else if (scrolled == 0) {
           alpha = parallaxSettings.initialOpacity;
           parallaxElementsArray[i].privateScrolled = 0;
         /* else.. if scrolling up */
-        } 
+        }
         else {
           /* unless parallaxSettings.opacitySpeed = 1, make the element appear progressively */
           if (parallaxSettings.initialOpacity != 1) {
@@ -174,7 +220,7 @@ function parallaxImgScroll(settings) {
             alpha = parallaxSettings.initialOpacity;
           }
           //save the scrolling for this element
-          parallaxElementsArray[i].privateScrolled = parallaxElementsArray[i].privateScrolled - (lastestScrolled - scrolled);  
+          parallaxElementsArray[i].privateScrolled = parallaxElementsArray[i].privateScrolled - (lastestScrolled - scrolled);
         }
 
         $(parallaxElementsArray[i].element).css({
@@ -193,12 +239,12 @@ function parallaxImgScroll(settings) {
       //if it went up and off the screen
       if ([distance + height] < scrolled) {
         return false;
-      } 
+      }
       //if if didnt appear from belog yet
       else if ([scrolled + $(window).height()] < distance) {
         return false;
       }
-      //if it is being displayed on screen 
+      //if it is being displayed on screen
       else {
         return true;
       }
