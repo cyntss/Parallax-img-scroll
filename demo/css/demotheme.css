@@ -11,7 +11,7 @@ body {
 h1, h2, h3, h4, h5, h6, nav a  {
   font-family: 'Raleway', sans-serif;
   font-weight: 100
-} 
+}
 h1 {
   font-size: 5em
 }
@@ -31,13 +31,17 @@ nav {
 nav a {
   color: #fff;
   text-decoration: none;
-  margin-right: 2em; 
+  margin-right: 2em;
 }
 nav a:hover {
   color: #1FE0D4
 }
 section:nth-of-type(1) {
   background: url("../img/assassins/bg.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   height: 1950px;
   text-align: center;
 }
@@ -76,6 +80,7 @@ section:nth-of-type(2) article:nth-of-type(1) {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  background-size: cover;
   background-size: 100%;
   text-align: center;
   color: #fff;
