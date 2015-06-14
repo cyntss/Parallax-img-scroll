@@ -14,7 +14,7 @@ Other pages using it:
 <h2>Installing</h2>
 <ul>
 <li>
-  Download <strong>parallaxImg.js<strong> from <a href="https://github.com/cyntss/Parallax-img-scroll/blob/master/demo/js/parallaxImg.js" target="_blank">here</a></li>
+  Download <strong>parallaxImg.js</strong> from <a href="https://github.com/cyntss/Parallax-img-scroll/blob/master/demo/js/parallaxImg.js" target="_blank">here</a></li>
 <li>
   Add it to your &lt;head&gt; like: <br/>
   <pre>&lt;script src="js/parallaxImg.js" type="text/javascript"&gt;&lt;/script&gt;</pre>
@@ -60,7 +60,8 @@ When initiating Parallax-img-scroll you can pass an object with two parameters a
   $(document).on("ready", function() {
     var parallaxSettings = { 
       initialOpacity: 1, //from 0 to 1, e.g. 0.34 is a valid value. 0 = transparent, 1 = Opaque
-      opacitySpeed: 0.1 //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
+      opacitySpeed: 0.1, //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
+      pageLoader: true //creates a page loader. It is set "false" by default.
     };
 
     parallaxImgScroll(parallaxSettings);
