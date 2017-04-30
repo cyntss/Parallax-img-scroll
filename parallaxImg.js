@@ -133,12 +133,17 @@ function parallaxImgScroll(settings) {
             var TopPosition = Math.floor(Math.random() * (heightOfContainer - (heightOfContainer/4)) + 1);
           }
 
-          //if the element has am horizontal position declared
+          //if the element has an horizontal position declared
           if ($(setOfElements[i]).hasData('ps-horizontal-position')) {
             var leftPosition = $(setOfElements[i]).data('ps-horizontal-position');
+            var rightPosition = undefined;
           }
-          else {
+          else if ($(setOfElements[i]).hasData('ps-horizontal-position-right')) {
+            var rightPosition = $(setOfElements[i]).data('ps-horizontal-position-right');
+            var leftPosition = undefined;
+          } else {
             var leftPosition = Math.floor(Math.random() * (widthOfContainer - 100) + 50);
+            var rightPosition = undefined;
           }
 
           //if the element has a z-index declared
@@ -153,17 +158,27 @@ function parallaxImgScroll(settings) {
             "element" : $(setOfElements[i]),
             "scrollSpeed" : scrollSpeed,
             "horizontalPagePosition" : leftPosition,
+            "horizontalPagePositionRight" : rightPosition,
             "verticalPagePosition" : TopPosition,
             "opacity" : parallaxSettings.initialOpacity,
             "privateScrolled" : 0
           });
 
           /* Apply initial position */
-          $(setOfElements[i]).css({
-            "bottom": TopPosition,
-            "left": leftPosition,
-            "z-index": zPosition
-          })
+          console.log(leftPosition, rightPosition)
+          if (leftPosition) {
+            $(setOfElements[i]).css({
+              "bottom": TopPosition,
+              "left": leftPosition,
+              "z-index": zPosition
+            })
+          } else {
+            $(setOfElements[i]).css({
+              "bottom": TopPosition,
+              "right": rightPosition,
+              "z-index": zPosition
+            })
+          }
         }
       }
     });
@@ -257,4 +272,3 @@ function parallaxImgScroll(settings) {
 $.fn.hasData = function(attrName) {
   return (typeof $(this).data(attrName) != 'undefined');
 };
-
