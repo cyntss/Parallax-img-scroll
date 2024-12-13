@@ -37,7 +37,7 @@ nav a:hover {
   color: #1FE0D4
 }
 section:nth-of-type(1) {
-  background: url("../img/assassins/bg.jpg");
+  background: url("../assassins/bg.jpg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -74,7 +74,7 @@ section:nth-of-type(1) article:nth-of-type(1) h3 {
   margin: 1em 0 0.5em 0
 }
 section:nth-of-type(2) article:nth-of-type(1) {
-  background: url('../img/assassins/bg-assassins.jpg') #000 no-repeat 0px 200px;
+  background: url('../assassins/bg-assassins.jpg') #000 no-repeat 0px 200px;
   width: 100%;
   height: 1100px;
   -webkit-background-size: cover;
@@ -175,3 +175,59 @@ section:nth-of-type(2) article:nth-of-type(1) {
   height: auto;
 }
 
+img {
+  width: auto; /* Ensures images take up full width of their container */
+  height: auto; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures images fill their space without distortion */
+}
+
+img.parallax-move {
+  max-width: 100%; /* Prevents images from exceeding container width */
+  height: auto; /* Maintains aspect ratio */
+  position: relative; /* Keeps the parallax effect intact */
+}
+@media (max-width: 768px) {
+  .parallax-move {
+    width: auto; /* Shrinks images on smaller screens */
+    height: auto;
+  }
+
+  section {
+    height: auto; /* Adjust section height dynamically */
+    padding: 20px; /* Add padding for better spacing */
+  }
+}
+
+@media (max-width: 480px) {
+  .parallax-move {
+    width: 60%; /* Further shrink images on very small screens */
+  }
+}
+
+
+  #countdown-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+  }
+
+  #countdown-container h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  #countdown-timer {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
